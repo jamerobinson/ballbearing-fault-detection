@@ -10,10 +10,7 @@ function App() {
     //   mode: 'no-cors',
     // })
     axios.get('https://23oerh0rlk.execute-api.us-east-1.amazonaws.com/test')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('data', data);
-      })
+      .then((response) => console.log('response', response))
       .catch((error) => console.log(error));
   }, []);
 
