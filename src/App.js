@@ -9,7 +9,8 @@ function App() {
     //   method: "GET",
     //   mode: 'no-cors',
     // })
-    axios.get('https://23oerh0rlk.execute-api.us-east-1.amazonaws.com/test')
+    // axios.get('https://23oerh0rlk.execute-api.us-east-1.amazonaws.com/test')
+    axios.get('http://18.216.28.17:5000')
       .then((response) => console.log('response', response))
       .catch((error) => console.log(error));
   }, []);
