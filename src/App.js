@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
@@ -15,6 +15,8 @@ function App() {
   //     .catch((error) => console.log(error));
   // }, []);
 
+  const [filename, setFilename] = useState();
+
   const handleFileUpload = (event) => {
     // get the selected file from the input
     const file = event.target.files[0];
@@ -30,7 +32,8 @@ function App() {
       })
       .then((response) => {
         // handle the response
-        console.log(response);
+        setFilename(response.data.filename)
+        console.log(response, typeof response);
       })
       .catch((error) => {
         // handle errors
@@ -44,6 +47,7 @@ function App() {
       <header className="App-header">
         Ballbearing Fault Detection App
         <input type="file" onChange={handleFileUpload} />
+        <img style={{height: "400px"}} src={'http://3.144.217.159:5000/img/' + filename} />
       </header>
     </div>
   );
