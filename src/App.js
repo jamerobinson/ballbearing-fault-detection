@@ -47,7 +47,7 @@ function App() {
       <header className="App-header">
         Ballbearing Fault Detection App
         <input type="file" onChange={handleFileUpload} />
-        <img style={{height: "400px"}} src={'http://3.144.217.159:5000/img/' + filename} />
+        <img style={{height: "400px", marginTop: "1em"}} src={'http://3.144.217.159:5000/img/' + filename} />
       </header>
     </div>
   );
