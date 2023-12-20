@@ -1,29 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  // useEffect(() => {
-  //   // fetch("https://23oerh0rlk.execute-api.us-east-1.amazonaws.com/test", {
-  //   //   method: "GET",
-  //   //   mode: 'no-cors',
-  //   // })
-  //   // axios.get('https://23oerh0rlk.execute-api.us-east-1.amazonaws.com/test')
-  //   axios.post('http://3.144.217.159:5000/inference', )
-  //     .then((response) => console.log('response', response))
-  //     .catch((error) => console.log(error));
-  // }, []);
-
   const [filename, setFilename] = useState();
 
   const handleFileUpload = (event) => {
+    setFilename('**loading**')
+    console.log('log 1');
     // get the selected file from the input
     const file = event.target.files[0];
     // create a new FormData object and append the file to it
     const formData = new FormData();
     formData.append("image", file);
-    // make a POST request to the File Upload API with the FormData object and Rapid API headers
+    console.log('log2');
+    // make a POST request to the File Upload API with the FormData object
     axios
       .post("http://3.144.217.159:5000/inference", formData, {
         headers: {
@@ -41,13 +32,24 @@ function App() {
       });
   };
 
+  function ImgDisplay({filename}) {
+    if (filename && filename !== '**loading**') {
+      return <img style={{height: "400px", marginTop: "1em"}} src={'http://3.144.217.159:5000/img/' + filename} alt='ballbearing' />
+    }
+    else if (filename === '**loading**') {
+      return <div>Loading...</div>
+    }
+    else {
+      return <></>
+    }
+  } 
 
   return (
     <div className="App">
       <header className="App-header">
         Ballbearing Fault Detection App
         <input type="file" onChange={handleFileUpload} />
-        <img style={{height: "400px", marginTop: "1em"}} src={'http://3.144.217.159:5000/img/' + filename} />
+        <ImgDisplay filename={filename} />
       </header>
     </div>
   );
