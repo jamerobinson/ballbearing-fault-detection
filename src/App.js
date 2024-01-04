@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
   const [filename, setFilename] = useState();
+  const [defectLabel, setDefectLabel] = useState();
+  const [defectScore, setDefectScore] = useState();
 
   const handleFileUpload = (event) => {
     setFilename('**loading**')
@@ -24,6 +26,8 @@ function App() {
       .then((response) => {
         // handle the response
         setFilename(response.data.filename)
+        setDefectLabel(response.data.largest_defect_label)
+        setDefectScore((Math.round(response.data.largest_defect_score * 100) / 100).toString().substring(0, 4))
         console.log(response, typeof response);
       })
       .catch((error) => {
@@ -34,7 +38,13 @@ function App() {
 
   function ImgDisplay({filename}) {
     if (filename && filename !== '**loading**') {
-      return <img style={{height: "400px", marginTop: "1em"}} src={'http://3.144.217.159:5000/img/' + filename} alt='ballbearing' />
+      
+      return (
+        <>
+          <div style={{fontSize: ".75em"}}>The most prominent defect detected is {defectLabel} with a confidence score of {defectScore}</div>
+          <img style={{height: "400px", marginTop: "1em"}} src={'http://3.144.217.159:5000/img/' + filename} alt='ballbearing' />
+        </>
+      )
     }
     else if (filename === '**loading**') {
       return <div>Loading...</div>
