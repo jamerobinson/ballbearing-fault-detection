@@ -18,7 +18,7 @@ function App() {
     console.log('log2');
     // make a POST request to the File Upload API with the FormData object
     axios
-      .post("http://3.144.217.159:5000/inference", formData, {
+      .post("http://18.191.21.155:5000/inference", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -42,7 +42,7 @@ function App() {
       return (
         <>
           <div style={{fontSize: ".75em"}}>The most prominent defect detected is {defectLabel} with a confidence score of {defectScore}</div>
-          <img style={{height: "400px", marginTop: "1em"}} src={'http://3.144.217.159:5000/img/' + filename} alt='ballbearing' />
+          <img style={{height: "400px", marginTop: "1em"}} src={'http://18.191.21.155:5000/img/' + filename} alt='ballbearing' />
         </>
       )
     }
