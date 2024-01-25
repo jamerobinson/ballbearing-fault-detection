@@ -41,7 +41,10 @@ function App() {
       
       return (
         <>
-          <div style={{fontSize: ".75em"}}>The most prominent defect detected is {defectLabel} with a confidence score of {defectScore}</div>
+          {defectScore > 0 ?
+            <div style={{fontSize: ".75em"}}>The most prominent defect detected is {defectLabel} with a confidence score of {defectScore}</div>
+            : ''
+          }
           <img style={{height: "400px", marginTop: "1em"}} src={'http://18.191.21.155:5000/img/' + filename} alt='ballbearing' />
         </>
       )
